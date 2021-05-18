@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import Big from "big.js";
 
 class App extends React.Component {
     constructor(props) {
@@ -57,20 +58,20 @@ class App extends React.Component {
         let operation = this.state.operation;
         if (operation === "") return;
 
-        let cachedValue = parseFloat(this.state.cachedValue);
-        let currentValue = parseFloat(this.state.displayedValue);
+        let cachedValue = new Big(this.state.cachedValue);
+        let currentValue = new Big(this.state.displayedValue);
         switch (operation) {
             case "÷":
-                result = cachedValue / currentValue;
+                result = cachedValue.div(currentValue);
                 break;
             case "x":
-                result = cachedValue * currentValue;
+                result = cachedValue.times(currentValue);
                 break;
             case "-":
-                result = cachedValue - currentValue;
+                result = cachedValue.minus(currentValue);
                 break;
             case "+":
-                result = cachedValue + currentValue;
+                result = cachedValue.plus(currentValue);
                 break;
             default:
                 break;
@@ -78,7 +79,7 @@ class App extends React.Component {
         this.setState((state, props) => ({
             operation: "",
             cachedValue: 0,
-            displayedValue: result,
+            displayedValue: result.toString(),
         }));
     }
 
