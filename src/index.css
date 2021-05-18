@@ -80,6 +80,16 @@ code {
     padding: 0;
 }
 
+.button button:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.button button:active {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
 .button:last-child button {
     margin-right: 0;
 }
